@@ -27,3 +27,7 @@ clean:
 	@rm -rf build
 	@rm -rf node_modules
 
+.PHONY: publish
+publish: build
+	npm publish --access=public
+
