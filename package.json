@@ -1,7 +1,7 @@
 {
   "name": "@kiwai/grpc-ts-health-check",
   "private": false,
-  "version": "1.8.0-alpha.2",
+  "version": "1.8.0-fixes.2",
   "description": "Health check client and service for use with gRPC-node in TS using @grpc/grpc-js",
   "main": "build/index.js",
   "scripts": {

@@ -16,7 +16,7 @@
 // limitations under the License.
 //
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var v1_health_pb = require('../v1/health_pb.js');
 
 function serialize_HealthCheckRequest(arg) {

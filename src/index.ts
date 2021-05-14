@@ -3,8 +3,10 @@ import type { ServerErrorResponse, ServerStatusResponse } from "@grpc/grpc-js/bu
 import _get from "lodash.get"
 import _clone from "lodash.clone"
 
-import health_messages from "./v1/health_pb"
-import health_service from "./v1/health_grpc_pb"
+import * as health_messages from "./v1/health_pb"
+import * as health_service from "./v1/health_grpc_pb"
+
+const healthMessages = health_messages as any
 
 export class Implementation implements grpc.UntypedServiceImplementation {
     [name: string]: any
@@ -35,7 +37,7 @@ export class Implementation implements grpc.UntypedServiceImplementation {
             // TODO(murgatroid99): Do this without an explicit reference to grpc.
             callback({ code: grpc.status.NOT_FOUND })
         } else {
-            let response = new health_messages.HealthCheckResponse()
+            let response = new healthMessages.HealthCheckResponse()
             response.setStatus(status)
             callback(null, response)
         }
