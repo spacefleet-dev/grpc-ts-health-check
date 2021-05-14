@@ -1,0 +1,31 @@
+{
+  "name": "@kiwai/grpc-ts-health-check",
+  "version": "1.8.0-alpha",
+  "description": "Health check client and service for use with gRPC-node in TS using @grpc/grpc-js",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/expo21xx/grpc-ts-health-check"
+  },
+  "author": "Robin Thrift <robin@expo21xx.com>",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/lodash.clone": "^4.5.6",
+    "@types/lodash.get": "^4.4.6",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-node": "^11.1.0",
+    "prettier": "^2.3.0",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.3.1",
+    "lodash.clone": "^4.5.0",
+    "lodash.get": "^4.4.2"
+  }
+}
