@@ -1,11 +1,14 @@
 import * as grpc from "@grpc/grpc-js"
+import type { ServerErrorResponse, ServerStatusResponse } from "@grpc/grpc-js/build/src/server-call"
 import _get from "lodash.get"
 import _clone from "lodash.clone"
 
 import health_messages from "./v1/health_pb"
 import health_service from "./v1/health_grpc_pb"
 
-export class Implementation {
+export class Implementation implements grpc.UntypedServiceImplementation {
+    [name: string]: any
+
     private statusMap: any
     constructor(statusMap: any) {
         this.statusMap = _clone(statusMap)
@@ -15,7 +18,17 @@ export class Implementation {
         this.statusMap[service] = status
     }
 
-    check(call: any, callback: (e: any, r?: any) => void) {
+    // type HandleCall<RequestType, ResponseType> = handleUnaryCall<RequestType, ResponseType> | handleClientStreamingCall<RequestType, ResponseType> | handleServerStreamingCall<RequestType, ResponseType> | handleBidiStreamingCall<RequestType, ResponseType>;
+    // type handleUnaryCall<RequestType, ResponseType> = (call: ServerUnaryCall<RequestType, ResponseType>, callback: sendUnaryData<ResponseType>) => void;
+    check(
+        call: grpc.ServerUnaryCall<any, any>,
+        callback: (
+            error: ServerErrorResponse | ServerStatusResponse | null,
+            value?: any | null,
+            trailer?: grpc.Metadata,
+            flags?: number
+        ) => void
+    ) {
         let service = call.request.getService()
         let status = _get(this.statusMap, service, null)
         if (status === null) {
